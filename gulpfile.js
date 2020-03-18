@@ -25,9 +25,9 @@ function cssfy() {
 
 
 function watch() {
-    // browserSync.init({
-    //     server: { baseDir: "./" }
-    // });
+    browserSync.init({
+        server: { baseDir: "./" }
+    });
     gulp.watch("./src/assets/styles/**/*.scss", cssfy);
     gulp.watch("./src/assets/styles/**/*.scss");
 }

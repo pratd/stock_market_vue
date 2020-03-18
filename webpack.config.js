@@ -1,5 +1,4 @@
-'use strict'
-
+var path = require('path');
 const webpack = require('webpack')
 const {VueLoaderPlugin} = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -10,10 +9,13 @@ module.exports = {
         './src/app.js'
     ],
     devServer: {
-        hot: true,
-        watchOptions: {
-          poll: true
-        }
+        // hot: true,
+        // watchOptions: {
+        //   poll: true
+        // }
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 9000
     },
     module: {
         rules: [
