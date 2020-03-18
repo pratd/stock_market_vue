@@ -1,7 +1,7 @@
 // https://www.youtube.com/watch?v=QgMQeLymAdU
 const gulp = require("gulp");
 const sass = require("gulp-sass");
-// const browserSync = require("browser-sync").create();
+const browserSync = require("browser-sync").create();
 const minify = require('gulp-minify');
 const notify = require( 'gulp-notify' );
 
@@ -16,7 +16,7 @@ function cssfy() {
         //2. pass that file through the sass compiler
         .pipe(sass({outputStyle: 'compressed'}))
         //3. where do I save the compiled CSS?
-        .pipe(gulp.dest("./dist/styles/output"))
+        .pipe(gulp.dest("./dist/styles"))
         //4. stream changes to all browser
         // .pipe(browserSync.stream())
         .pipe( notify({ message: '\n\n✅  ===> STYLE — completed!\n', onLast: true }) )
