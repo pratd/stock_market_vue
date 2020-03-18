@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config webpack.config.js; gulp watch",
-    "build": "webpack",
+    "dev": "concurrently --kill-others \"gulp watch\" \"webpack-dev-server --config webpack.config.js\"",
     "postinstall": "gulp cssfy; webpack -p"
   },
   "keywords": [],
@@ -17,6 +16,7 @@
     "@babel/preset-env": "^7.8.7",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
+    "concurrently": "^5.1.0",
     "css-loader": "^3.4.2",
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
