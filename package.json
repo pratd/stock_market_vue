@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "webpack",
-    "postinstall": "webpack -p"
+    "postinstall": "webpack -p; gulp cssfy"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,12 @@
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "babel-loader": "^8.0.6",
+    "browser-sync": "^2.26.7",
     "css-loader": "^3.4.2",
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-sass": "^4.0.2",
     "html-webpack-plugin": "^3.2.0",
     "vue-loader": "^15.9.0",
     "vue-style-loader": "^4.1.2",
