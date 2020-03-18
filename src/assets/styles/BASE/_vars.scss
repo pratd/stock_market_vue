@@ -7,6 +7,6 @@ $primary-color: #00b580;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#navbarNav router-link{
+#navbarNav a{
   color: $primary-color;
 }

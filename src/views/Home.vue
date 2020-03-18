@@ -2,7 +2,7 @@
   <div class="home">
     <!-- <form>
     </form> -->
-    <img alt="Header" src="../assets/img/cover_visual-market.png">
+    <img alt="Header" src="../../src/assets/img/cover.png">
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
