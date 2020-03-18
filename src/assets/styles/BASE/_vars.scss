@@ -1,12 +1,12 @@
 $primary-color: #00b580;
-// *{
-//   border: 1px solid red;
-// }
+*{
+  border: 1px solid red;
+}
 #app {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#navbarNav a{
+#navbarNav router-link{
   color: $primary-color;
 }
