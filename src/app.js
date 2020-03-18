@@ -4,4 +4,4 @@ import '../dist/styles/importer.css'
 new Vue({
   el: '#app',
   render: h => h(App)
-})
+}) 

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack.config.js; gulp watch",
     "build": "webpack",
-    "postinstall": "webpack -p; gulp cssfy"
+    "postinstall": "gulp cssfy; webpack -p"
   },
   "keywords": [],
   "author": "",
