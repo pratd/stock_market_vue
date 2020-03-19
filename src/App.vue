@@ -57,6 +57,7 @@
       axios.get(`https://fake-stock-eye.herokuapp.com/`)
         .then(res => {
           console.log(res.data);
+          this.info = res.data;
         })
         .catch(err => console.log(err));
     }
