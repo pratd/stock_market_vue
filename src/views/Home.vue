@@ -7,7 +7,7 @@
           <h2 class="text-white">Trade Bitcoin, BNB, and hundreds of other cryptocurrencies in minutes</h2>
           <form id="searcher">
             <div class="inputWithIcon">
-              <input type="text" placeholder="Search for Markets">
+              <input type="text" placeholder="Search for markets">
               <i class="material-icons" aria-hidden="true">search</i>
             </div>
           </form>
