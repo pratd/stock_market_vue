@@ -1,3 +1,17 @@
-#navbarNav a{
-    color: $primary-color;
+#navbarNav a {
+  color: $primary-color;
+}
+
+
+.img-searcher-container{
+  background-image:url("../../../src/assets/img/cover.png");
+  background-size: auto;
+  max-height: 310px;
+  height: -webkit-fill-available;
+  .searcher-container{
+    max-width: 410px;
+    h2{
+      font-size: 18px;
+    }
   }
+}

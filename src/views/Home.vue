@@ -1,14 +1,20 @@
 <template>
   <div class="home">
-    <!-- <form>
-    </form> -->
-    <img alt="Header" src="../../src/assets/img/cover.png">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <div class="img-searcher-container d-flex justify-content-center">
+      <div class="d-flex justify-content-center align-items-end flex-column container">
+        <div class="searcher-container">
+          <h1 class="text-white">The World’s Leading Exchange Platform</h1>
+          <h2 class="text-white">Trade Bitcoin, BNB, and hundreds of other cryptocurrencies in minutes</h2>
+          <form id="searcher">
+              <input type="text">
+              <input type="submit">
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 export default {
   name: 'Home',
   components: {

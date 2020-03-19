@@ -16,7 +16,7 @@ function cssfy() {
         //2. pass that file through the sass compiler
         .pipe(sass({outputStyle: 'compressed'}))
         //3. where do I save the compiled CSS?
-        .pipe(gulp.dest("./dist/styles"))
+        .pipe(gulp.dest("./src/assets/styles/"))
         //4. stream changes to all browser
         // .pipe(browserSync.stream())
         .pipe( notify({ message: '\n\n✅  ===> STYLE — completed!\n', onLast: true }) )
