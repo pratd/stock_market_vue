@@ -21,6 +21,9 @@
       </div>
     </nav>
     <router-view/>
+    <footer class="d-flex justify-content-center">
+      <img alt="Visual Market logo" height="100" src="../src/assets/img/logo-port.png">
+    </footer>
   </div>
 </template>
 
