@@ -6,8 +6,10 @@
           <h1 class="text-white">The World’s Leading Exchange Platform</h1>
           <h2 class="text-white">Trade Bitcoin, BNB, and hundreds of other cryptocurrencies in minutes</h2>
           <form id="searcher">
-              <input type="text">
-              <input type="submit">
+            <div class="inputWithIcon">
+              <input type="text" placeholder="Search for Markets">
+              <i class="material-icons" aria-hidden="true">search</i>
+            </div>
           </form>
         </div>
       </div>
