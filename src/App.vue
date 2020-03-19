@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <router-link to="/" class="navbar-brand v-market-logo"><img alt="Visual Market logo" height="40" src="../src/assets/img/logo-land.png"></router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,6 +20,7 @@
         </ul>
       </div>
     </nav>
+    <p>{{ info }}</p>
     <router-view/>
     <footer class="d-flex justify-content-center">
       <img alt="Visual Market logo" height="100" src="../src/assets/img/logo-port.png">
@@ -28,7 +29,36 @@
 </template>
 
 <style>
-  @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-  @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
-  @import'~bootstrap/dist/css/bootstrap.css'
+  @import'~bootstrap/dist/css/bootstrap.css';
 </style>
+
+
+<script>
+  import axios from 'axios';
+  import cors from 'cors';
+  export default{
+    name: 'app',
+    data() {
+      return {
+        info: [],
+      }
+    },
+    // async created(){
+    //   try {
+    //     const res = await axios.get('https://fake-stock-eye.herokuapp.com/');
+    //     this.info = res.data;
+    //     console.log(this.info)
+    //     //(param == 'prices') ? this.prices=res.data : this.assets=res.data;
+    //   } catch(e){
+    //     console.error(e)
+    //   }
+    // },
+    created(){
+      axios.get(`https://fake-stock-eye.herokuapp.com/`)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+  }
+</script>
