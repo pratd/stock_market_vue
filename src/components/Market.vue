@@ -1,6 +1,6 @@
 <template>
     <div class="market-values container py-5">
-        <h3 class="mb-3">Market Values</h3>
+        <h3 class="mb-3 table-title">Market Values</h3>
         <div class="accordion" id="marketValue">
           <div v-for="(data, index) in allData.assets" class="card" :key="index">
             <div class="card-header" :id="'headingOne' + index">
