@@ -4,15 +4,19 @@
         <div class="accordion" id="marketValue">
           <div v-for="(data, index) in allData.assets" class="card" :key="index">
             <div class="card-header" :id="'headingOne' + index">
-              <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
-                    <img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
-                    <!-- <img src="../../src/assets/img/logo-land.png"> -->
-                    <span>{{ data.symbol }}</span>
-                    <span>{{ data.name }}</span>
-                    <span>{{ data.last_price }}</span>
+              <!-- <h2 class="mb-0"> -->
+                <button class="btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
+                    <div>
+                      <img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
+                      <span>{{ data.symbol }}</span>
+                      <span>{{ data.name }}</span>
+                    </div>
+                    <div>
+                      <span>{{ data.last_price }}</span>
+                      <span><i class="material-icons pt-1">bookmark</i></span>
+                    </div>
                 </button>
-              </h2>
+              <!-- </h2> -->
             </div>
 
             <div :id="'collapse' + index" class="collapse" :aria-labelledby="'heading' + index" data-parent="#marketValue">
