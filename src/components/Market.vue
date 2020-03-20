@@ -2,20 +2,24 @@
     <div class="market-values container pt-5">
         <h3>Market Values</h3>
         <p>{{ allData }}</p>
+
         <div class="accordion" id="marketValue">
-            <div v-for="(data, index) in allDataAssets" class="card" :key="index">
-                <div class="card-header" id="MarketHeading">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="'#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <div v-for="(data, index) in allDataAssets" class="card" :key="index">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
                         {{ data.name }}
-                    </button>
-                </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="MarketHeading" data-parent="#marketValue">
+                      </button>
+                    </h2>
+                  </div>
+
+                  <div :id="'collapse' + index" class="collapse" :aria-labelledby="'heading' + index" data-parent="#marketValue">
                     <div class="card-body">
-                        {{ data.desc }}
+                      {{data.desc}}
                     </div>
-                </div>
-            </div>
-        </div>
+                  </div>
+          </div>
+          </div>
     </div>
 </template>
 <script>
