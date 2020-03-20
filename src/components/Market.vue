@@ -1,14 +1,12 @@
 <template>
     <div class="market-values container pt-5">
         <h3>Market Values</h3>
-        <p>{{ allData }}</p>
-
         <div class="accordion" id="marketValue">
           <div v-for="(data, index) in allDataAssets" class="card" :key="index">
                   <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-link" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
-                        {{ data.name }}
+                        <span>{{ data.name }}</span><span>{{ data.name }}</span><span>{{ data.name }}</span>
                       </button>
                     </h2>
                   </div>
