@@ -16,10 +16,9 @@
     h2{
       font-size: 18px;
     }
-
     form{
       input[type="text"] {
-        width: 100%;
+        width: 80%;
         border: 2px solid $secondary-color;
         border-radius: 4px;
         margin: 8px 0;
@@ -29,7 +28,7 @@
         transition: 0.3s;
       }
       
-      input[type="text"]:focus {
+      input[type="text"]:focus, input[type="submit"]:focus{
         border-color: $primary-color;
         box-shadow: 0 0 8px 0 $primary-color;
       }
@@ -57,6 +56,32 @@
       .inputWithIcon.inputIconBg input[type="text"]:focus + i {
         color: #fff;
         background-color: $primary-color;
+      }
+
+      input[type="submit"]{
+        text-transform: uppercase;
+        background-color: $secondary-color;
+        border: none;
+        font-weight: bold;
+        position: absolute;
+        left: 238px;
+        top: 14px;
+        color: white;
+        border-radius: 4px;
+        padding: 4px 9px;
+      }
+    }
+  }
+}
+@include respond-below(xs) {
+  .searcher-container{
+    form{
+      input[type="text"]{
+        width: 100% !important;
+      }
+      input[type="submit"]{
+        right: 8px !important;
+        left: unset !important;
       }
     }
   }

@@ -9,6 +9,7 @@
             <div class="inputWithIcon">
               <input type="text" placeholder="Search for markets">
               <i class="material-icons" aria-hidden="true">search</i>
+              <input type="submit" value="search">
             </div>
           </form>
         </div>
@@ -19,10 +20,16 @@
 </template>
 <script>
   import Market from '../components/Market.vue'
+  import EventBus from '../event-bus.js'
   export default {
     name: 'Home',
     components: {
       Market
+    },
+    methods:{
+      submitSearch: function(e){
+
+      }
     }
   }
 </script>

@@ -4,6 +4,9 @@
     font-size: 27px;
 }
 .accordion{
+    i, i:hover{
+        color: $primary-color;
+    }
     button, button:hover{
         color: black;
         text-decoration: none;

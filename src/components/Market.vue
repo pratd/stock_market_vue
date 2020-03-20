@@ -13,7 +13,7 @@
                     </div>
                     <div>
                       <span>{{ data.last_price }}</span>
-                      <span><i class="material-icons pt-1">bookmark</i></span>
+                      <span><i class="material-icons pt-1">bookmark_border</i></span>
                     </div>
                 </button>
               <!-- </h2> -->
