@@ -20,7 +20,6 @@
         </ul>
       </div>
     </nav>
-    <p>{{ info }}</p>
     <router-view/>
     <footer class="d-flex justify-content-center">
       <img alt="Visual Market logo" height="100" src="../src/assets/img/logo-port.png">
@@ -34,32 +33,7 @@
 
 
 <script>
-  import axios from 'axios';
-  import cors from 'cors';
-  export default{
-    name: 'app',
-    data() {
-      return {
-        info: [],
-      }
-    },
-    // async created(){
-    //   try {
-    //     const res = await axios.get('https://fake-stock-eye.herokuapp.com/');
-    //     this.info = res.data;
-    //     console.log(this.info)
-    //     //(param == 'prices') ? this.prices=res.data : this.assets=res.data;
-    //   } catch(e){
-    //     console.error(e)
-    //   }
-    // },
-    created(){
-      axios.get(`https://fake-stock-eye.herokuapp.com/`)
-        .then(res => {
-          console.log(res.data);
-          this.info = res.data;
-        })
-        .catch(err => console.log(err));
-    }
+  export default {
+    name: 'App'
   }
 </script>

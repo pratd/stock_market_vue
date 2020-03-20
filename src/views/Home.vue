@@ -14,13 +14,15 @@
         </div>
       </div>
     </div>
+  <Market/>
   </div>
 </template>
 <script>
-export default {
-  name: 'Home',
-  components: {
-    // HelloWorld
+  import Market from '../components/Market.vue'
+  export default {
+    name: 'Home',
+    components: {
+      Market
+    }
   }
-}
 </script>
