@@ -31,9 +31,9 @@
 	export default {
 		name: 'Market',
 		data() {
-		return {
-			allData: [],
-		}
+			return {
+				allData: [],
+			}
 		},
 		created(){
 			axios.get(`https://fake-stock-eye.herokuapp.com/`)
