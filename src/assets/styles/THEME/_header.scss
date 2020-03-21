@@ -16,7 +16,7 @@
     h2{
       font-size: 18px;
     }
-    form{
+    #searcher{
       input[type="text"] {
         width: 80%;
         border: 2px solid $secondary-color;
@@ -75,7 +75,7 @@
 }
 @include respond-below(xs) {
   .searcher-container{
-    form{
+    #searcher{
       input[type="text"]{
         width: 100% !important;
       }
