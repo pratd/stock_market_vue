@@ -4,13 +4,13 @@
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData.assets" class="card" :key="index">
 				<div class="card-header" :id="'headingOne' + index">
-					<button class="btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
-						<div>
+					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
+						<div class="left-side-els">
 							<img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
 							<span>{{ data.symbol }}</span>
 							<span>{{ data.name }}</span>
 						</div>
-						<div>
+						<div class="right-side-els">
 							<span>{{ data.last_price }}</span>
 							<span><i class="material-icons pt-1">bookmark_border</i></span>
 						</div>
