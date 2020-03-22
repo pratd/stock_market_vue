@@ -1,5 +1,5 @@
-<template v-if="following.lenght > 0 || setToFollow > 0">
-    <div id="followingValues" class="following-values container py-5">
+<template>
+    <div v-if="Object.keys(following).length !== 0" id="followingValues" class="following-values container py-5">
         <h3 class="mb-3 table-title">Following Values</h3>
         <div class="accordion" id="followingValue">
 			<div v-for="(data, index) in following" class="card" :key="index">
@@ -22,16 +22,18 @@
 		mounted(){
 			if (localStorage.getItem('following') === null) {
 				localStorage.setItem('following', '');
+			}else{
+				const following = JSON.parse(localStorage.getItem('following'));
+				this.following = following;
 			}
 
-			const following = JSON.parse(localStorage.getItem('following'));
-			this.following = following;
+			console.log(this.following, typeof this.following)
 
 			EventBus.$on('addBookmark', elementToAdd =>{
 				this.following.push(elementToAdd);
 			})
 
-			EventBus.$on('removeBookmark', function(elementToRemove){
+			EventBus.$on('removeBookmark', elementToRemove =>{
 				const index = this.following.indexOf(elementToRemove);
 				this.following.splice(index, 1);
 			})
