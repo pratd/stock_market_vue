@@ -1,5 +1,5 @@
 <template>
-    <div class="market-values container py-5">
+    <div id="marketValues" class="market-values container py-5">
         <h3 class="mb-3 table-title">Market Values</h3>
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData.assets" class="card" :key="index">
@@ -62,6 +62,8 @@
 				this.setToFollow.push(element);
 				const follow = [...this.setToFollow, ...this.following]
 				localStorage.setItem('following', JSON.stringify(follow))
+
+				EventBus.$emit('addBookmark', element);
 			},
 			removeFromBookMarks: function(element){
 				if(this.following.includes(element)){
@@ -74,6 +76,8 @@
 				}
 				const follow = [...this.setToFollow, ...this.following]
 				localStorage.setItem('following', JSON.stringify(follow))
+
+				EventBus.$emit('removeBookmark', element);
 			}
 		}
 	}

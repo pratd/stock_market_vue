@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <router-link to="/about" class="nav-link">Market Values</router-link>
+            <router-link to="#marketValues" class="nav-link">Market Values</router-link>
           </li>
           <li class="nav-item active">
             <router-link to="/about" class="nav-link">Top Values</router-link>
