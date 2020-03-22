@@ -17,30 +17,23 @@
 		data() {
 			return {
 				following: [],
-				setToFollow: [],
 			}
 		},
 		mounted(){
 			if (localStorage.getItem('following') === null) {
 				localStorage.setItem('following', '');
 			}
-			this.following = JSON.parse(localStorage.getItem('following'))
 
-			EventBus.$on('addBookmark', function(elementToAdd){
-				console.log('Hello! Element to be added is:' + elementToAdd)
-				this.setToFollow.push(elementToAdd);
+			const following = JSON.parse(localStorage.getItem('following'));
+			this.following = following;
+
+			EventBus.$on('addBookmark', elementToAdd =>{
+				this.following.push(elementToAdd);
 			})
 
 			EventBus.$on('removeBookmark', function(elementToRemove){
-				console.log('Hello! Element to be removed is:' + elementToRemove)
-				// if(this.following.includes(elementToRemove)){
-				// 	const index = this.following.indexOf(elementToRemove);
-				// 	this.following.splice(index, 1);
-				// }
-				// if(this.setToFollow.includes(elementToRemove)){
-				// 	const index = this.setToFollow.indexOf(elementToRemove);
-				// 	this.setToFollow.splice(index, 1);
-				// }
+				const index = this.following.indexOf(elementToRemove);
+				this.following.splice(index, 1);
 			})
 		}
 	}

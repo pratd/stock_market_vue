@@ -40,26 +40,17 @@
 				following: [],
 			}
 		},
-		mounted(){
-			axios.get(`https://fake-stock-eye.herokuapp.com/`)
-			.then(all => {
-				this.allData = all.data;
-			})
-			.catch(err => console.log(err));
-
-
-			EventBus.$on('searchable', function(data){
-				console.log('Hello from the Market component, the search term is:' + data);
-			})
-
-			if (localStorage.getItem('following') === null) {
-				localStorage.setItem('following', '');
-			}
-			this.following = JSON.parse(localStorage.getItem('following'))
-		},
 		methods:{
+			getAllData(){
+				axios.get(`https://fake-stock-eye.herokuapp.com/`)
+				.then(all => {
+					this.allData = all.data;
+				})
+				.catch(err => console.log(err));
+			},
 			addToBookmarks: function (element){
 				this.setToFollow.push(element);
+
 				const follow = [...this.setToFollow, ...this.following]
 				localStorage.setItem('following', JSON.stringify(follow))
 
@@ -79,6 +70,19 @@
 
 				EventBus.$emit('removeBookmark', element);
 			}
+		},
+		beforeMount(){
+			this.getAllData();
+		},
+		mounted(){
+			EventBus.$on('searchable', data =>{
+				console.log('Hello from the Market component, the search term is:' + data);
+			});
+
+			if (localStorage.getItem('following') === null) {
+				localStorage.setItem('following', '');
+			}
+			this.following = JSON.parse(localStorage.getItem('following'))
 		}
 	}
 </script>
