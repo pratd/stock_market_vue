@@ -12,15 +12,11 @@
 						</div>
 						<div class="right-side-els">
 							<span>{{ data.last_price }} $</span>
-							<span v-if="following.includes(data.name) || setToFollow.includes(data.name)"><i class="material-icons pt-1">bookmark</i></span>
-							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
 						</div>
 					</button>
 				</div>
 				<div :id="'collapse' + index" class="collapse" :aria-labelledby="'heading' + index" data-parent="#marketValue">
 					<div class="card-body">
-						<button v-if="following.includes(data.name) || setToFollow.includes(data.name)" v-on:click="removeFromBookMarks(data.name)">Remove from Bookmark</button>
-						<button v-else v-on:click="addToBookmarks(data.name)">Add to Bookmark</button>
 						{{data.desc}}
 					</div>
 				</div>
@@ -36,8 +32,6 @@
 		data() {
 			return {
 				allData: [],
-				setToFollow: [],
-				following: [],
 			}
 		},
 		methods:{
@@ -47,28 +41,6 @@
 					this.allData = all.data;
 				})
 				.catch(err => console.log(err));
-			},
-			addToBookmarks: function (element){
-				this.setToFollow.push(element);
-
-				const follow = [...this.setToFollow, ...this.following]
-				localStorage.setItem('following', JSON.stringify(follow))
-
-				EventBus.$emit('addBookmark', element);
-			},
-			removeFromBookMarks: function(element){
-				if(this.following.includes(element)){
-					const index = this.following.indexOf(element);
-					this.following.splice(index, 1);
-				}
-				if(this.setToFollow.includes(element)){
-					const index = this.setToFollow.indexOf(element);
-					this.setToFollow.splice(index, 1);
-				}
-				const follow = [...this.setToFollow, ...this.following]
-				localStorage.setItem('following', JSON.stringify(follow))
-
-				EventBus.$emit('removeBookmark', element);
 			}
 		},
 		beforeMount(){
@@ -83,12 +55,6 @@
 				localStorage.setItem('following', '');
 			}
 			this.following = JSON.parse(localStorage.getItem('following'))
-
-			EventBus.$on('removeBookmarkFromFollowing', data =>{
-				this.removeFromBookMarks(data);
-			});
-
-
 		}
 	}
 </script>

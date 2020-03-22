@@ -4,7 +4,8 @@
         <div class="accordion" id="followingValue">
 			<div v-for="(data, index) in following" class="card" :key="index">
 				<div class="card-header" :id="'headingOne' + index">
-					<p>Hello!</p>
+					<p>{{data}}</p>
+					<button v-on:click="removeFromBookmarks(data)">Remove from the bookmarks list</button>
 				</div>
 			</div>
         </div>
@@ -27,8 +28,6 @@
 				this.following = following;
 			}
 
-			console.log(this.following, typeof this.following)
-
 			EventBus.$on('addBookmark', elementToAdd =>{
 				this.following.push(elementToAdd);
 			})
@@ -37,6 +36,11 @@
 				const index = this.following.indexOf(elementToRemove);
 				this.following.splice(index, 1);
 			})
+		},
+		methods:{
+			removeFromBookmarks: function(marketName){
+				EventBus.$emit('removeBookmarkFromFollowing', marketName);
+			}
 		}
 	}
 </script>
