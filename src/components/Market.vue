@@ -31,56 +31,23 @@
     </div>
 </template>
 <script>
-<<<<<<< HEAD
 import axios from 'axios';
-  export default {
+import EventBus from '../event-bus';
+export default {
     name: 'Market',
     data() {
       return {
-      allData: [],
-      allDataPrices: [],
-      allDataAssets: [],
+		allData: [],
+		setToFollow: [],
+		following: [],
       }
     },
     props:{
         exportData:{
             type: Object
         }
-    },
-    // async created(){
-    //   try {
-    //     const res = await axios.get('https://fake-stock-eye.herokuapp.com/');
-    //     this.info = res.data;
-    //     console.log(this.info)
-    //     //(param == 'prices') ? this.prices=res.data : this.assets=res.data;
-    //   } catch(e){
-    //     console.error(e)
-    //   }
-    // },
-    created(){
-      axios.get(`https://fake-stock-eye.herokuapp.com/`)
-        .then(all => {
-            this.allData = all.data;
-            this.allDataPrices = all.data.prices;
-            this.allDataAssets = all.data.assets;
-            
-        })
-        .catch(err => console.log(err));
-    },
-  }
-=======
-	import axios from 'axios';
-	import EventBus from '../event-bus';
-	export default {
-		name: 'Market',
-		data() {
-			return {
-				allData: [],
-				setToFollow: [],
-				following: [],
-			}
-		},
-		methods:{
+	},
+	methods:{
 			getAllData(){
 				axios.get(`https://fake-stock-eye.herokuapp.com/`)
 				.then(all => {
@@ -135,5 +102,4 @@ import axios from 'axios';
 
 		}
 	}
->>>>>>> 84f487940f6bca0ae6facd4626b14e14e57fe373
 </script>
