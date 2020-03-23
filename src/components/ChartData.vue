@@ -2,7 +2,6 @@
     <div class="market-values container pt-5">
         <h3>Price chart</h3>
         <line-chart v-if="loaded" :labels= "labels" :datasets="datasets" :options="options"/>
-        {{ datasets }}
     </div>
 </template>
 
@@ -14,7 +13,17 @@ export default {
     components: { LineChart },
     data: () => ({
         loaded: false,
-        datasets: null,
+        datasets: [
+            {
+                label: 'Data One',
+                backgroundColor: '#f87979',
+                pointBackgroundColor: 'white',
+                borderWidth: 1,
+                pointBorderColor: '#249EBF',
+                //Data to be represented on y-axis
+                data: null
+            }
+          ],
         labels: null,
         options: null
     }),
@@ -24,9 +33,8 @@ export default {
             axios.get(`https://fake-stock-eye.herokuapp.com/`)
             .then(coinList =>{
             this.labels = coinList.data.prices.map(list=>list.time);
-            this.datasets = {data:coinList.data.prices.map(list=>list.price)};
+            this.datasets[0].data = coinList.data.prices.map(list=>list.price);
             this.loaded = true;
-            console.log(this.datasets);
             }
             )
         } catch (e) {
