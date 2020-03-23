@@ -59,13 +59,17 @@
 				EventBus.$emit('addBookmark', element);
 			},
 			removeFromBookMarks: function(element){
-				if(this.following.includes(element)){
-					const index = this.following.indexOf(element);
-					this.following.splice(index, 1);
+				if(this.following.some(market => market.id == element)){
+					// const index = this.following.indexOf(element);
+					// this.following.splice(index, 1);
+					var removeIndex = this.following.map(item => item.id).indexOf(element);
+					this.following.splice(removeIndex, 1);
 				}
-				if(this.setToFollow.includes(element)){
-					const index = this.setToFollow.indexOf(element);
-					this.setToFollow.splice(index, 1);
+				if(this.setToFollow.some(market => market.id == element)){
+					// const index = this.setToFollow.indexOf(element);
+					// this.setToFollow.splice(index, 1);
+					var removeIndex = this.setToFollow.map(item => item.id).indexOf(element);
+					this.setToFollow.splice(removeIndex, 1);
 				}
 				const follow = [...this.setToFollow, ...this.following]
 				localStorage.setItem('following', JSON.stringify(follow))

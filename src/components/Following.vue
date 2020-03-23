@@ -5,7 +5,7 @@
 			<div v-for="(data, index) in following" class="card" :key="index">
 				<div class="card-header d-flex justify-content-between align-items-center">
 					<p class="m-0">{{data}}</p>
-					<button class="bookmark-button" v-on:click="removeFromBookmarks(data)">Remove</button>
+					<button class="bookmark-button" v-on:click="removeFromBookmarks(data.id)">Remove</button>
 				</div>
 			</div>
         </div>
@@ -33,13 +33,15 @@
 			})
 
 			EventBus.$on('removeBookmark', elementToRemove =>{
-				const index = this.following.indexOf(elementToRemove);
-				this.following.splice(index, 1);
+				// const index = this.following.indexOf(elementToRemove);
+				// this.following.splice(index, 1);
+				var removeIndex = this.following.map(item => item.id).indexOf(elementToRemove);
+				this.following.splice(removeIndex, 1);
 			})
 		},
 		methods:{
-			removeFromBookmarks: function(marketName){
-				EventBus.$emit('removeBookmarkFromFollowing', marketName);
+			removeFromBookmarks: function(marketId){
+				EventBus.$emit('removeBookmarkFromFollowing', marketId);
 			}
 		}
 	}
