@@ -13,9 +13,9 @@
           <li class="nav-item active">
             <router-link to="/about" class="nav-link">Top Values</router-link>
           </li>
-          <li class="nav-item active d-flex align-items-center">
+          <!-- <li class="nav-item active d-flex align-items-center">
             <router-link to="/about" class="nav-link p-0"><i class="material-icons pt-1">bookmark</i></router-link>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>

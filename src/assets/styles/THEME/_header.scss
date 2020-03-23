@@ -68,18 +68,11 @@
 				background-color: $primary-color;
 			}
 
-			input[type="submit"] {
-				text-transform: uppercase;
-				background-color: $secondary-color;
-				border: none;
-				font-weight: bold;
-				position: absolute;
-				left: 238px;
-				top: 14px;
-				color: white;
-				border-radius: 4px;
-				padding: 4px 9px;
-			}
+			// input[type="submit"] {
+			// 	position: absolute;
+			// 	left: 238px;
+			// 	top: 14px;
+			// }
 		}
 	}
 }

@@ -3,9 +3,9 @@
         <h3 class="mb-3 table-title">Following Values</h3>
         <div class="accordion" id="followingValue">
 			<div v-for="(data, index) in following" class="card" :key="index">
-				<div class="card-header" :id="'headingOne' + index">
-					<p>{{data}}</p>
-					<button v-on:click="removeFromBookmarks(data)">Remove from the bookmarks list</button>
+				<div class="card-header d-flex justify-content-between align-items-center">
+					<p class="m-0">{{data}}</p>
+					<button class="bookmark-button" v-on:click="removeFromBookmarks(data)">Remove</button>
 				</div>
 			</div>
         </div>

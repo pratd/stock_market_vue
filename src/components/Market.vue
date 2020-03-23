@@ -3,7 +3,7 @@
         <h3 class="mb-3 table-title">Market Values</h3>
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData.assets" class="card" :key="index">
-				<div class="card-header" :id="'headingOne' + index">
+				<div class="card-header" :id="'heading' + index">
 					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse' + index" aria-expanded="false" :aria-controls="'collapse' + index">
 						<div class="left-side-els">
 							<img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
@@ -18,10 +18,12 @@
 					</button>
 				</div>
 				<div :id="'collapse' + index" class="collapse" :aria-labelledby="'heading' + index" data-parent="#marketValue">
-					<div class="card-body">
-						<button v-if="following.includes(data.name) || setToFollow.includes(data.name)" v-on:click="removeFromBookMarks(data.name)">Remove from Bookmark</button>
-						<button v-else v-on:click="addToBookmarks(data.name)">Add to Bookmark</button>
+					<div class="card-body d-flex flex-column align-items-end">
 						{{data.desc}}
+						<div>
+							<button class="bookmark-button" v-if="following.includes(data.name) || setToFollow.includes(data.name)" v-on:click="removeFromBookMarks(data.name)">Remove from Bookmark</button>
+							<button class="bookmark-button" v-else v-on:click="addToBookmarks(data.name)">Add to Bookmark</button>
+						</div>
 					</div>
 				</div>
 			</div>
