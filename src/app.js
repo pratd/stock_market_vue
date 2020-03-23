@@ -13,7 +13,7 @@ import '../src/assets/styles/importer.css'
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
-
+Vue.config.productionTip = false;
 new Vue({
   router,
   el: '#app',

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --kill-others \"gulp watch\" \"webpack-dev-server --config webpack.config.js\"",
-    "postinstall": "gulp cssfy; webpack -p"
+    "dev": "concurrently --kill-others \"gulp watch\" \"webpack-dev-server --config webpack.config.js\""
   },
   "keywords": [],
   "author": "",
@@ -37,9 +36,11 @@
     "@popperjs/core": "^2.1.1",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.7.0",
+    "chart.js": "^2.9.3",
     "node-static": "^0.7.11",
     "portal-vue": "^2.1.7",
     "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.0",
     "vue-router": "^3.1.6"
   }
 }

@@ -9,9 +9,14 @@
                         {{ data.name }}
                     </button>
                 </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="MarketHeading" data-parent="#marketValue">
+                <div id="collapseOne" class="collapse show" aria-labelledby="MarketHeading" data-parent="#marketValue">
                     <div class="card-body">
                         {{ data.desc }}
+                    </div>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="MarketHeading" data-parent="#marketValue">
+                    <div class="card-body">
+                        {{ data.last_price }}
                     </div>
                 </div>
             </div>
@@ -19,15 +24,20 @@
     </div>
 </template>
 <script>
-  import axios from 'axios';
+import axios from 'axios';
   export default {
     name: 'Market',
-      data() {
+    data() {
       return {
-        allData: [],
-        allDataPrices: [],
-        allDataAssets: [],
+      allData: [],
+      allDataPrices: [],
+      allDataAssets: [],
       }
+    },
+    props:{
+        exportData:{
+            type: Object
+        }
     },
     // async created(){
     //   try {
@@ -45,8 +55,9 @@
             this.allData = all.data;
             this.allDataPrices = all.data.prices;
             this.allDataAssets = all.data.assets;
+            
         })
         .catch(err => console.log(err));
-    }
+    },
   }
 </script>

@@ -14,15 +14,19 @@
         </div>
       </div>
     </div>
-  <Market/>
+    <ChartData/>
+    <Market/>
+
   </div>
 </template>
 <script>
   import Market from '../components/Market.vue'
+  import ChartData from '../components/ChartData.vue'
   export default {
     name: 'Home',
     components: {
-      Market
+      Market,
+      ChartData
     }
   }
 </script>
