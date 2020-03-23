@@ -5,7 +5,7 @@ export default {
     //mixins: [reactiveProp ],
     props: {
         datasets: {
-            type: Object,
+            type: Array,
             default: null
         },
         labels:{
