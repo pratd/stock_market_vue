@@ -12,7 +12,7 @@
 						</div>
 						<div class="right-side-els">
 							<span>{{ data.last_price }} $</span>
-							<span v-if="following.includes(data.name) || setToFollow.includes(data.name)"><i class="material-icons pt-1">bookmark</i></span>
+							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)"><i class="material-icons pt-1">bookmark</i></span>
 							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
 						</div>
 					</button>
@@ -21,8 +21,8 @@
 					<div class="card-body d-flex flex-column align-items-end">
 						{{data.desc}}
 						<div>
-							<button class="bookmark-button" v-if="following.includes(data.name) || setToFollow.includes(data.name)" v-on:click="removeFromBookMarks(data.name)">Remove from Bookmark</button>
-							<button class="bookmark-button" v-else v-on:click="addToBookmarks(data.name)">Add to Bookmark</button>
+							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
+							<button class="bookmark-button" v-else v-on:click="addToBookmarks({id: data.id, name: data.name, symbol: data.symbol})">Add to Bookmark</button>
 						</div>
 					</div>
 				</div>
