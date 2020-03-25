@@ -50,6 +50,10 @@ module.exports = {
             template: 'index.html',
             inject: true
 		}),
-		new Dotenv({})
+		new Dotenv({
+			'process.env': {
+				'API_KEY': JSON.stringify(process.env.API_KEY)
+			 }
+		})
     ]
 }
