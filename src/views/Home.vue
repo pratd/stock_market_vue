@@ -1,7 +1,8 @@
 <template>
 	<div class="home">
 		<Header />
-		<chartj-s />
+		<SearchResults />
+		<!-- <chartj-s /> -->
 		<Top />
 		<Following />
 		<Market />
@@ -9,7 +10,8 @@
 </template>
 <script>
 	import Header from '../components/Header.vue'
-	import ChartjS from '../components/Chart.vue'
+	import SearchResults from '../components/SearchResults.vue'
+	// import ChartjS from '../components/Chart.vue'
 	import Top from '../components/Top.vue'
 	import Market from '../components/Market.vue'
 	import Following from '../components/Following.vue'
@@ -18,7 +20,8 @@
 		name: 'Home',
 		components: {
 			Header,
-			ChartjS,
+			SearchResults,
+			// ChartjS,
 			Top,
 			Market,
 			Following

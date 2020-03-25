@@ -86,10 +86,6 @@ export default {
 		// 	},
 		mounted(){
 			this.getAllData();
-			EventBus.$on('searchable', data =>{
-				console.log('Hello from the Market component, the search term is:' + data);
-			});
-
 			if (localStorage.getItem('following') === null) {
 				localStorage.setItem('following', '');
 			}

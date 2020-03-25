@@ -7,7 +7,7 @@
 					<h2 class="text-white">Trade Bitcoin, BNB, and hundreds of other cryptocurrencies in minutes</h2>
 					<div id="searcher">
 						<div class="inputWithIcon">
-							<input type="text" placeholder="Search for markets" @keyup.enter="submit" v-model="searchQuery">
+							<input type="text" placeholder="Search markets by name" @keyup.enter="submit" v-model="searchQuery">
 							<i class="material-icons" aria-hidden="true">search</i>
 							<!-- <input type="submit" value="search"> -->
 						</div>

@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <router-link to="#marketValues" class="nav-link">Market Values</router-link>
+            <a href="#marketValues" class="nav-link">Market Values</a>
           </li>
           <li class="nav-item active">
-            <router-link to="/about" class="nav-link">Top Values</router-link>
+            <a href="#topMarketValues" class="nav-link">Top Values</a>
           </li>
           <!-- <li class="nav-item active d-flex align-items-center">
             <router-link to="/about" class="nav-link p-0"><i class="material-icons pt-1">bookmark</i></router-link>
