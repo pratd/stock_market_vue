@@ -20,12 +20,9 @@ export default {
             },
         },
         series:[{
-            name:null,
-            data:[{
-                x: null,
-                y: []
-            }]
-        }]
+            name:'Price chart',
+            data:[]
+        }]  
     }),
     mounted(){
         this.loaded = false
@@ -33,15 +30,14 @@ export default {
             axios.get(`https://fake-stock-eye.herokuapp.com/history?symbol=BTC`)
             .then(coinList =>{
                 //console.log(coinList.data)
-                this.series[0].data[0].x= coinList.data.map(list=>new Date(list.CloseTime));
-                // //this.series[0].data[0].y= coinList.data.map(list=>list.prices);
-                let i,chunkedArray =[];
-                for(i=0; i<coinList.data.length; i++ ){
+                for(var i=0; i<coinList.data.length; i++ ){
+                    var obj={}
+                    obj['x']= new Date(coinList.data[i].CloseTime);
                     var picked = (({ Open, High, Low, Close }) => ({ Open, High, Low, Close }))(coinList.data[i]);
-                    chunkedArray.push(Object.values(picked))
+                    obj['y']=Object.values(picked);
+                    this.series[0].data.push(obj);
                 }
-                this.series[0].data[0].y=chunkedArray;
-                console.log(this.series[0].data[0].y)
+                console.log(this.series[0].data)
                 this.loaded = true;
             }
             )
