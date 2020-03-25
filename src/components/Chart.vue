@@ -1,7 +1,7 @@
 <template>
     <div class="market-values container pt-5">
         <h3>Price chart</h3>
-        <apexchart width="500" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
+        <apexchart width="700" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
     </div>
 </template>
 
