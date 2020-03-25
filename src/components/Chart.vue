@@ -1,7 +1,7 @@
 <template>
     <div class="market-values container pt-5">
         <h3>Price chart</h3>
-        <apexchart width="500" type="candlestick" v-if="loaded" :labels= "labels" :series="datasets" :options="chartOptions"/>
+        <apexchart width="500" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
     </div>
 </template>
 
@@ -26,17 +26,23 @@ export default {
                 y: []
             }]
         }]
-        
     }),
     mounted(){
         this.loaded = false
         try {
-            axios.get(`http://localhost:3000/BTC`)
+            axios.get(`https://fake-stock-eye.herokuapp.com/history?symbol=BTC`)
             .then(coinList =>{
-            console.log(coinList.data.map(list=>new Date(list.time)));
-            // this.labels = new Date(coinList.data.map(list=>list.time));
-            // this.datasets[0].data = coinList.data.map(list=>list.price);
-            this.loaded = true;
+                //console.log(coinList.data)
+                this.series[0].data[0].x= coinList.data.map(list=>new Date(list.CloseTime));
+                // //this.series[0].data[0].y= coinList.data.map(list=>list.prices);
+                let i,chunkedArray =[];
+                for(i=0; i<coinList.data.length; i++ ){
+                    var picked = (({ Open, High, Low, Close }) => ({ Open, High, Low, Close }))(coinList.data[i]);
+                    chunkedArray.push(Object.values(picked))
+                }
+                this.series[0].data[0].y=chunkedArray;
+                console.log(this.series[0].data[0].y)
+                this.loaded = true;
             }
             )
         } catch (e) {
