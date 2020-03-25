@@ -30,10 +30,10 @@ export default {
     mounted(){
         this.loaded = false
         try {
-            axios.get(`https://fake-stock-eye.herokuapp.com/`)
+            axios.get(`http://localhost:3000/prices`)
             .then(coinList =>{
-            this.labels = coinList.data.prices.map(list=>list.time);
-            this.datasets[0].data = coinList.data.prices.map(list=>list.price);
+            this.labels = coinList.data.map(list=>list.time);
+            this.datasets[0].data = coinList.data.map(list=>list.price);
             this.loaded = true;
             }
             )

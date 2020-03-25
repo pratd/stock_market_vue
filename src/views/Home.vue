@@ -9,7 +9,7 @@
 </template>
 <script>
 	import Header from '../components/Header.vue'
-	import ChartjS from '../components/ChartData.vue'
+	import ChartjS from '../components/Chart.vue'
 	import Top from '../components/Top.vue'
 	import Market from '../components/Market.vue'
 	import Following from '../components/Following.vue'
