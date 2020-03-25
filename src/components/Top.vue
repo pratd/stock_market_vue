@@ -1,6 +1,6 @@
 <template>
 	<div id="topMarketValues" class="market-values container py-5">
-        <h3 class="mb-3 table-title">Top 3</h3>
+        <h3 class="mb-3 table-title">Top {{ topQTY }}</h3>
         <div class="accordion" id="topMarketValue">
 			<div v-for="(data, index) in topData" class="card" :key="index">
 				<div class="card-header d-flex justify-content-between align-items-center">
@@ -20,12 +20,13 @@
 		name: 'Top',
 		data() {
 			return {
-				topData: []
+				topData: [],
+				topQTY: process.env.TOPQTY
 			}
 		},
 		methods:{
 			getTopData(){
-				axios.get(process.env.APIURL + 'marketDetails?_sort=price&_order=desc')
+				axios.get(process.env.APIURL + 'marketDetails?_sort=price&_order=desc&_limit=' + process.env.TOPQTY)
 				.then(top => {
 					this.topData = top.data;
 				})

@@ -53,7 +53,8 @@ module.exports = {
 		new Dotenv({}),
 		new webpack.DefinePlugin({
 			'process.env': {
-				'APIURL': JSON.stringify(process.env.APIURL)
+				'APIURL': JSON.stringify(process.env.APIURL),
+				'TOPQTY': JSON.stringify(process.env.TOPQTY)
 			}
 		})
     ]
