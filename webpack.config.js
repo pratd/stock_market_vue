@@ -50,7 +50,8 @@ module.exports = {
             template: 'index.html',
             inject: true
 		}),
-		new Dotenv({
+		// new Dotenv({}),
+		new webpack.DefinePlugin({
 			'process.env': {
 				'API_KEY': JSON.stringify(process.env.API_KEY)
 			 }
