@@ -51,7 +51,7 @@ module.exports = {
             inject: true
 		}),
 		new Dotenv({
-			systemvars: true
+			path: path.resolve(process.cwd(), '.env')
 		})
     ]
 }
