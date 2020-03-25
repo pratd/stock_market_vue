@@ -2,7 +2,7 @@
 	<div id="topMarketValues" class="market-values container py-5">
         <h3 class="mb-3 table-title">Top 3</h3>
         <div class="accordion" id="topMarketValue">
-			<div v-for="(data, index) in topData.assets" class="card" :key="index">
+			<div v-for="(data, index) in topData" class="card" :key="index">
 				<div class="card-header" :id="'heading-market' + data.id">
 					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" :aria-controls="'collapse-market' + data.id">
 						<div class="left-side-els">
@@ -27,7 +27,7 @@
 		},
 		methods:{
 			getTopData(){
-				axios.get(`https://fake-stock-eye.herokuapp.com/`)
+				axios.get(process.env.APIURL + 'marketDetails?_sort=price&_order=desc')
 				.then(top => {
 					this.topData = top.data;
 				})

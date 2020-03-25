@@ -2,7 +2,7 @@
     <div id="marketValues" class="market-values container py-5">
         <h3 class="mb-3 table-title">Market Values</h3>
         <div class="accordion" id="marketValue">
-			<div v-for="(data, index) in allData.assets" class="card" :key="index">
+			<div v-for="(data, index) in allData" class="card" :key="index">
 				<div class="card-header" :id="'heading-market' + data.id">
 					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" :aria-controls="'collapse-market' + data.id">
 						<div class="left-side-els">
@@ -11,7 +11,7 @@
 							<span>{{ data.name }}</span>
 						</div>
 						<div class="right-side-els">
-							<span>{{ data.last_price }} $</span>
+							<span>{{ data.price }} $</span>
 							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)"><i class="material-icons pt-1">bookmark</i></span>
 							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
 						</div>
@@ -19,7 +19,7 @@
 				</div>
 				<div :id="'collapse-market' + data.id" class="collapse" :aria-labelledby="'heading' + data.id" data-parent="#marketValue">
 					<div class="card-body d-flex flex-column align-items-end">
-						{{data.desc}}
+						{{data.description}}
 						<div>
 							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
 							<button class="bookmark-button" v-else v-on:click="addToBookmarks({id: data.id, name: data.name, symbol: data.symbol})">Add to Bookmark</button>
@@ -49,7 +49,7 @@ export default {
 	},
 	methods:{
 			getAllData(){
-				axios.get(`https://fake-stock-eye.herokuapp.com/`)
+				axios.get(process.env.APIURL + 'marketDetails')
 				.then(all => {
 					this.allData = all.data;
 				})
@@ -82,10 +82,10 @@ export default {
 				EventBus.$emit('removeBookmark', element);
 			}
 		},
-		beforeMount(){
-			this.getAllData();
-		},
+		// beforeMount(){
+		// 	},
 		mounted(){
+			this.getAllData();
 			EventBus.$on('searchable', data =>{
 				console.log('Hello from the Market component, the search term is:' + data);
 			});
