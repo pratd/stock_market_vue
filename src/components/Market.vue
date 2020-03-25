@@ -82,8 +82,6 @@ export default {
 				EventBus.$emit('removeBookmark', element);
 			}
 		},
-		// beforeMount(){
-		// 	},
 		mounted(){
 			this.getAllData();
 			if (localStorage.getItem('following') === null) {
@@ -94,8 +92,6 @@ export default {
 			EventBus.$on('removeBookmarkFromFollowing', data =>{
 				this.removeFromBookMarks(data);
 			});
-
-
 		}
 	}
 </script>
