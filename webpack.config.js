@@ -50,8 +50,11 @@ module.exports = {
             template: 'index.html',
             inject: true
 		}),
-		new Dotenv({
-			path: path.resolve(process.cwd(), '.env')
+		new Dotenv({}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				'APIURL': JSON.stringify(process.env.APIURL)
+			}
 		})
     ]
 }
