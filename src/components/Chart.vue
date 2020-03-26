@@ -1,5 +1,5 @@
 <template>
-    <div class="market-values container pt-5">
+    <div class="container pt-5">
         <h3>Price chart</h3>
         <apexchart width="700" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
     </div>
@@ -18,18 +18,42 @@ export default {
             chart: {
                 id: 'vuechart'
             },
+            title: {
+                text: 'CandleStick Chart',
+                align: 'left'
+            },
+            xaxis: {
+                type: 'datetime'
+            },
+            yaxis: {
+                tooltip: {
+                    enabled: true
+                }
+            },
+        plotOptions:{
+            candlestick:{
+                colors:{
+                    upward: '#3C90EB',
+                    downward: '#DF7D46'
+                },
+                wick:{
+                    useFillColor:true,
+                }
+            }
+        }
         },
         series:[{
             name:'Price chart',
             data:[]
-        }]  
+        }]
     }),
     mounted(){
         this.loaded = false
+         console.log(process.env.APIURL)
         try {
-            axios.get(`https://fake-stock-eye.herokuapp.com/history?symbol=BTC`)
+            axios.get(process.env.APIURL +`history?symbol=BTC`)
             .then(coinList =>{
-                //console.log(coinList.data)
+               
                 for(var i=0; i<coinList.data.length; i++ ){
                     var obj={}
                     obj['x']= new Date(coinList.data[i].CloseTime);
