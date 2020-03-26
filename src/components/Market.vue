@@ -10,7 +10,7 @@
 							<span>{{ data.symbol }}</span>
 							<span>{{ data.name }}</span>
 						</div>
-						<div class="right-side-els">
+						<div class="right-side-els d-none d-sm-block d-md-block d-lg-block d-xl-block">
 							<span>{{ data.price }} $</span>
 							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)"><i class="material-icons pt-1">bookmark</i></span>
 							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
@@ -19,7 +19,12 @@
 				</div>
 				<div :id="'collapse-market' + data.id" class="collapse" :aria-labelledby="'heading' + data.id" data-parent="#marketValue">
 					<div class="card-body d-flex flex-column align-items-end">
-						{{data.description}}
+						<div>
+							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)"><i class="material-icons pt-1">bookmark</i></span>
+							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-else><i class="material-icons pt-1">bookmark_border</i></span>
+							<p class="mb-2 detailed-market-name d-sm-none d-md-none d-lg-none d-xl-none">Last price: ${{data.price}}</p>
+							{{data.description}}
+						</div>
 						<div>
 							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
 							<button class="bookmark-button" v-else v-on:click="addToBookmarks({id: data.id, name: data.name, symbol: data.symbol})">Add to Bookmark</button>
