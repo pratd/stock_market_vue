@@ -14,7 +14,7 @@
 			</div>
         </div>
 		<div v-else>
-			<p>Sorry, no market name match your search.</p>
+			<p>Sorry, no market name matches your search.</p>
 		</div>
     </div>
 </template>
