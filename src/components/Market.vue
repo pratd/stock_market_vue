@@ -4,7 +4,9 @@
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData" class="card" :key="index">
 				<div class="card-header" :id="'heading-market' + data.id">
-					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" :aria-controls="'collapse-market' + data.id">
+					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" 
+					data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" 
+					:aria-controls="'collapse-market' + data.id" v-on:click="plotChart({element: data.symbol})">
 						<div class="left-side-els">
 							<img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
 							<span>{{ data.symbol }}</span>
@@ -12,7 +14,8 @@
 						</div>
 						<div class="right-side-els d-none d-sm-block d-md-block d-lg-block d-xl-block">
 							<span>{{ data.price }} $</span>
-							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)"><i class="material-icons pt-1">bookmark</i></span>
+							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)">
+								<i class="material-icons pt-1">bookmark</i></span>
 							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
 						</div>
 					</button>
@@ -26,9 +29,11 @@
 							{{data.description}}
 						</div>
 						<div>
-							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
+							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || 
+								setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
 							<button class="bookmark-button" v-else v-on:click="addToBookmarks({id: data.id, name: data.name, symbol: data.symbol})">Add to Bookmark</button>
 						</div>
+						<apexchart :id="'collapse-market' + data.id" data-parent="#marketValue"  width="500" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
 					</div>
 				</div>
 			</div>
@@ -36,6 +41,10 @@
     </div>
 </template>
 <script>
+import Vue from 'vue'
+import VueApexCharts from 'vue-apexcharts';
+Vue.use(VueApexCharts);
+Vue.component('apexchart',VueApexCharts );
 import axios from 'axios';
 import EventBus from '../event-bus';
 export default {
@@ -45,7 +54,38 @@ export default {
 		allData: [],
 		setToFollow: [],
 		following: [],
-      }
+		//rest of the data for the apex-charts
+		loaded: false,
+        chartOptions:{
+            title: {
+                text: 'CandleStick',
+                align: 'left'
+            },
+            xaxis: {
+                type: 'datetime'
+            },
+            yaxis: {
+                tooltip: {
+                    enabled: true
+                }
+            },
+        plotOptions:{
+            candlestick:{
+                colors:{
+                    upward: '#3C90EB',
+                    downward: '#DF7D46'
+                },
+                wick:{
+                    useFillColor:true,
+                }
+            }
+        }
+        },
+        series:[{
+            name:'Price chart',
+            data:[]
+        }]
+    }
     },
     props:{
         exportData:{
@@ -85,6 +125,26 @@ export default {
 				localStorage.setItem('following', JSON.stringify(follow))
 
 				EventBus.$emit('removeBookmark', element);
+			},
+			plotChart: function(element){
+				this.loaded = false
+				try {
+					axios.get(process.env.APIURL +`history?symbol=`+element.element)
+					.then(coinList =>{
+						for(var i=0; i<coinList.data.length; i++ ){
+							var obj={};
+							obj['x']= new Date(coinList.data[i].CloseTime);
+							var picked = (({ Open, High, Low, Close }) => ({ Open, High, Low, Close }))(coinList.data[i]);
+							obj['y']=Object.values(picked);
+							this.series[0].data.push(obj);
+						}
+						//console.log(this.series[0].data)
+						this.loaded = true;
+					}
+				)
+				} catch (e) {
+					console.error(e)
+				}
 			}
 		},
 		mounted(){
