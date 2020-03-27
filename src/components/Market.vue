@@ -28,12 +28,12 @@
 							<p class="mb-2 detailed-market-name d-sm-none d-md-none d-lg-none d-xl-none">Last price: ${{data.price}}</p>
 							{{data.description}}
 						</div>
+						<div class="w-100 d-flex justify-content-center my-5"><apexchart :id="'collapse-market' + data.id" data-parent="#marketValue"  width="500" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/></div>
 						<div>
 							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || 
 								setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
 							<button class="bookmark-button" v-else v-on:click="addToBookmarks({id: data.id, name: data.name, symbol: data.symbol})">Add to Bookmark</button>
 						</div>
-						<apexchart :id="'collapse-market' + data.id" data-parent="#marketValue"  width="500" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
 					</div>
 				</div>
 			</div>
