@@ -28,7 +28,9 @@
 							<p class="mb-2 detailed-market-name d-sm-none d-md-none d-lg-none d-xl-none">Last price: ${{data.price}}</p>
 							{{data.description}}
 						</div>
-						<div class="w-100 d-flex justify-content-center my-5"><apexchart class="chart" :id="'chart' + data.id" data-parent="#marketValue"  width="500" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/></div>
+						<div class="w-100 d-flex justify-content-center my-5">
+							<apexchart class="chart" :id="'chart' + data.id" width=500 height="350" data-parent="#marketValue" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
+						</div>
 						<div>
 							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || 
 								setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
@@ -83,11 +85,11 @@ export default {
         },
 		responsive: [
 			{
-				breakpoint: 576,
+				breakpoint: 384,
 				// options: {
 				// 	plotOptions: {
-				// 	bar: {
-				// 		horizontal: false
+				// 	candlestick: {
+				// 		horizontal: true
 				// 	}
 				// 	},
 				// 	legend: {
@@ -142,20 +144,25 @@ export default {
 				EventBus.$emit('removeBookmark', element);
 			},
 			plotChart: function(element){
-				
 				this.loaded = false
 				try {
 					axios.get(process.env.APIURL +`history?symbol=`+element.element)
 					.then(coinList =>{
-						for(var i=0; i<coinList.data.length; i++ ){
-							var obj={};
-							obj['x']= new Date(coinList.data[i].CloseTime);
-							var picked = (({ Open, High, Low, Close }) => ({ Open, High, Low, Close }))(coinList.data[i]);
-							obj['y']=Object.values(picked);
+						if (coinList.data.length>0){
+							for(var i=0; i<coinList.data.length; i++ ){
+								var obj={};
+								obj['x']= new Date(coinList.data[i].CloseTime);
+								var picked = (({ Open, High, Low, Close }) => ({ Open, High, Low, Close }))(coinList.data[i]);
+								obj['y']=Object.values(picked);
+								this.series[0].data.push(obj);
+							}
+						}else{
+							var obj={}
+							obj['x']= 0;
+							obj['y']= [0,0,0,0];
 							this.series[0].data.push(obj);
-							
 						}
-						//console.log(this.series[0].data)
+						console.log(this.series[0])
 						this.loaded = true;
 					}
 				)
