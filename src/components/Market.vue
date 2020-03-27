@@ -29,7 +29,7 @@
 							{{data.description}}
 						</div>
 						<div class="w-100 d-flex justify-content-center my-5">
-							<apexchart class="chart" :id="'chart' + data.id" width=500 data-parent="#marketValue" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
+							<apexchart class="chart" :id="'chart' + data.id" width=500 height="350" data-parent="#marketValue" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
 						</div>
 						<div>
 							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || 
