@@ -5,7 +5,7 @@
 			<div v-for="(data, index) in topData" class="card" :key="index">
 				<div class="card-header d-flex justify-content-between align-items-center">
 					<a :href="'#collapse-market' + data.id"><button class="left-side-els" type="button" data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" :aria-controls="'collapse-market' + data.id">
-						<img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
+						<!-- <img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)"> -->
 						<span>{{ data.symbol }}</span>
 						<span>{{ data.name }}</span>
 					</button></a>

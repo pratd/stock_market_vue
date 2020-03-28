@@ -8,7 +8,7 @@
 					data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" 
 					:aria-controls="'collapse-market' + data.id" v-on:click="plotChart({element: data.symbol})">
 						<div class="left-side-els">
-							<img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
+							<!-- <img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)"> -->
 							<span>{{ data.symbol }}</span>
 							<span>{{ data.name }}</span>
 						</div>
