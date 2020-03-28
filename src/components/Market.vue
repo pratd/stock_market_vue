@@ -4,7 +4,7 @@
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData" class="card" :key="index">
 				<div class="card-header" :id="'heading-market' + data.id">
-					<button class="btn-market btn btn-link d-flex justify-content-between w-100" type="button" 
+					<button class="btn-market btn btn-link d-flex justify-content-between w-100 align-items-center" type="button" 
 					data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" 
 					:aria-controls="'collapse-market' + data.id" v-on:click="plotChart({element: data.symbol})">
 						<div class="left-side-els">
@@ -12,8 +12,8 @@
 							<span>{{ data.symbol }}</span>
 							<span>{{ data.name }}</span>
 						</div>
-						<div class="right-side-els d-none d-sm-block d-md-block d-lg-block d-xl-block">
-							<span>{{ data.price }} $</span>
+						<div class="right-side-els d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex align-tems-center">
+							<span class="my-2">{{ data.price }} $</span>
 							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)">
 								<i class="material-icons pt-1">bookmark</i></span>
 							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
