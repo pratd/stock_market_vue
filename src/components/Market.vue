@@ -4,7 +4,7 @@
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData" class="card" :key="index">
 				<div class="card-header" :id="'heading-market' + data.market_symbol">
-					<button class="btn-market btn btn-link d-flex justify-content-between w-100 align-items-center" type="button" 
+					<button class="btn-market btn btn-link d-flex justify-content-between w-100 align-items-center p-0" type="button" 
 					data-toggle="collapse" :data-target="'#collapse-market' + data.market_symbol" aria-expanded="false" 
 					:aria-controls="'collapse-market' + data.market_symbol" v-on:click="plotChart({element: data.market_symbol})">
 						<div class="left-side-els">
@@ -26,7 +26,11 @@
 							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-if="following.some(market => market.symbol == data.market_symbol) || setToFollow.some(market => market.symbol == data.market_symbol)"><i class="material-icons pt-1">bookmark</i></span>
 							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-else><i class="material-icons pt-1">bookmark_border</i></span>
 							<p class="mb-2 detailed-market-name d-sm-none d-md-none d-lg-none d-xl-none">Last price: ${{data.close}}</p>
-							{{data.market_name}}
+							<p>{{data.market_name}} is a stock market in process of growing and therefore VisualMarket recommends it. If you're willing to see how your money grows exponentially, do not hesitate to invest in {{data.market_name}}. 
+								Buy stablecoins listed on VisualMarket by wiring money from your account to the providers of these coins. Then, use these stablecoins to buy {{data.market_name}}  on VisualMarket exchange.
+								VisualMarket supports the deposit of more than 150 cryptocurrencies, several of which you can exchange for {{data.market_name}} at some of the best rates in the market.
+								You can directly purchase {{data.market_name}} with credit card on VisualMarket. We offer the best route to buy {{data.market_name}} using debit card or credit card.
+							</p>
 						</div>
 						<div class="w-100 d-flex justify-content-center my-5">
 							<apexchart class="chart" :id="'chart' + data.market_symbol" width=500 height="350" data-parent="#marketValue" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
