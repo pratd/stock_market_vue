@@ -18,7 +18,7 @@
 		<div class="rolling-market-background">
 			<div class="ticker-wrap d-flex">
 				<div class="ticker">
-					<div v-for="(data, index) in allDataAssets" :key="index" class="ticker__item"><span>{{data.symbol}}</span> | <span class="text-danger">{{data.last_price}} $</span></div>
+					<div v-for="(data, index) in allDataAssets" :key="index" class="ticker__item"><span>{{data.market_symbol}}</span> | <span class="text-danger">{{data.close}} $</span></div>
 				</div>
 			</div>
 		</div>
@@ -37,11 +37,11 @@
 			}
 		},
 		created(){
-			axios.get(`https://fake-stock-eye.herokuapp.com/`)
-			.then(all => {
-				this.allDataAssets = all.data.assets;
-			})
-			.catch(err => console.log(err));
+				axios.get(process.env.APIURL + 'markets')
+				.then(all => {
+					this.allDataAssets = all.data;
+				})
+				.catch(err => console.log(err));
 		},
 		methods:{
 			submit: function(){

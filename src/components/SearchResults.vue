@@ -5,10 +5,10 @@
         <div v-if="Object.keys(searchResults.data).length !== 0" class="accordion" id="searchMarketValues">
 			<div v-for="(data, index) in searchResults.data" class="card" :key="index">
 				<div class="card-header d-flex justify-content-between align-items-center">
-					<a :href="'#collapse-market' + data.id"><button class="left-side-els" type="button" data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" :aria-controls="'collapse-market' + data.id">
-						<img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)">
-						<span>{{ data.symbol }}</span>
-						<span>{{ data.name }}</span>
+					<a :href="'#collapse-market' + data.market_symbol"><button class="left-side-els" type="button" data-toggle="collapse" :data-target="'#collapse-market' + data.market_symbol" aria-expanded="false" :aria-controls="'collapse-market' + data.market_symbol">
+						<!-- <img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)"> -->
+						<span>{{ data.market_symbol }}</span>
+						<span>{{ data.market_name }}</span>
 					</button></a>
 				</div>
 			</div>
@@ -31,13 +31,18 @@ export default {
 	},
 	created(){
 		EventBus.$on('searchable', searchInput =>{
-			searchInput = searchInput.charAt(0).toUpperCase() + searchInput.slice(1)
-			this.searchTerm = searchInput;
-			axios.get(process.env.APIURL + 'search?name=' + searchInput )
-				.then(results => {
-					this.searchResults = results;
-				})
-				.catch(err => console.log(err));
+			// searchInput = searchInput.charAt(0).toUpperCase() + searchInput.slice(1)
+			if(searchInput == '' || searchInput == ' '){
+				this.searchResults = []
+			}else{
+				searchInput = searchInput.toUpperCase()
+				this.searchTerm = searchInput;
+				axios.get(process.env.APIURL + 'search?target=' + searchInput )
+					.then(results => {
+						this.searchResults = results;
+					})
+					.catch(err => console.log(err));
+			}
 		});
 	}
 }

@@ -58,6 +58,11 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
+				'FAKEAPIURL': JSON.stringify(process.env.FAKEAPIURL)
+			}
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
 				'TOPQTY': JSON.stringify(process.env.TOPQTY)
 			}
 		})
