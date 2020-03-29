@@ -150,14 +150,13 @@ export default {
 			plotChart: function(element){
 				this.loaded = false
 				try {
-					axios.get(process.env.FAKEAPIURL +`history?symbol=`+element.element)
-					console.log(element.element);
+					axios.get(process.env.APIURL +`history?symbol=`+element.element)
 					.then(coinList =>{
 						if (coinList.data.length>0){
 							for(var i=0; i<coinList.data.length; i++ ){
 								var obj={};
-								obj['x']= new Date(coinList.data[i].CloseTime);
-								var picked = (({ Open, High, Low, Close }) => ({ Open, High, Low, Close }))(coinList.data[i]);
+								obj['x']= new Date(coinList.data[i].price_datetime);
+								var picked = (({ open, high, low, close }) => ({ open, high, low, close }))(coinList.data[i]);
 								obj['y']=Object.values(picked);
 								this.series[0].data.push(obj);
 							}
@@ -167,7 +166,6 @@ export default {
 							obj['y']= [0,0,0,0];
 							this.series[0].data.push(obj);
 						}
-						//console.log(this.series[0])
 						this.loaded = true;
 					}
 				)
