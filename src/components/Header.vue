@@ -36,13 +36,13 @@
 				allDataAssets: []
 			}
 		},
-		created(){
-			axios.get(`https://fake-stock-eye.herokuapp.com/`)
-			.then(all => {
-				this.allDataAssets = all.data.assets;
-			})
-			.catch(err => console.log(err));
-		},
+		// created(){
+		// 	axios.get(`https://fake-stock-eye.herokuapp.com/`)
+		// 	.then(all => {
+		// 		this.allDataAssets = all.data.assets;
+		// 	})
+		// 	.catch(err => console.log(err));
+		// },
 		methods:{
 			submit: function(){
 				EventBus.$emit('searchable', this.searchQuery);

@@ -3,38 +3,38 @@
         <h3 class="mb-3 table-title">Market Values</h3>
         <div class="accordion" id="marketValue">
 			<div v-for="(data, index) in allData" class="card" :key="index">
-				<div class="card-header" :id="'heading-market' + data.id">
+				<div class="card-header" :id="'heading-market' + data.market_symbol">
 					<button class="btn-market btn btn-link d-flex justify-content-between w-100 align-items-center" type="button" 
-					data-toggle="collapse" :data-target="'#collapse-market' + data.id" aria-expanded="false" 
-					:aria-controls="'collapse-market' + data.id" v-on:click="plotChart({element: data.symbol})">
+					data-toggle="collapse" :data-target="'#collapse-market' + data.market_symbol" aria-expanded="false" 
+					:aria-controls="'collapse-market' + data.market_symbol" v-on:click="plotChart({element: data.market_symbol})">
 						<div class="left-side-els">
-							<!-- <img width="36" :src="require(`../../src/assets/img/markets/${data.id}.png`)"> -->
-							<span>{{ data.symbol }}</span>
-							<span>{{ data.name }}</span>
+							<!-- <img width="36" :src="require(`../../src/assets/img/markets/${data.market_symbol}.png`)"> -->
+							<span>{{ data.market_symbol }}</span>
+							<span>{{ data.market_name }}</span>
 						</div>
 						<div class="right-side-els d-none d-sm-flex d-md-flex d-lg-flex d-xl-flex align-tems-center">
-							<span class="my-2">{{ data.price }} $</span>
-							<span v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)">
+							<span class="my-2">{{ data.close }} $</span>
+							<span v-if="following.some(market => market.symbol == data.market_symbol) || setToFollow.some(market => market.symbol == data.market_symbol)">
 								<i class="material-icons pt-1">bookmark</i></span>
 							<span v-else><i class="material-icons pt-1">bookmark_border</i></span>
 						</div>
 					</button>
 				</div>
-				<div :id="'collapse-market' + data.id" class="collapse" :aria-labelledby="'heading' + data.id" data-parent="#marketValue">
+				<div :id="'collapse-market' + data.market_symbol" class="collapse" :aria-labelledby="'heading' + data.id" data-parent="#marketValue">
 					<div class="card-body d-flex flex-column align-items-end">
 						<div>
-							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-if="following.some(market => market.id == data.id) || setToFollow.some(market => market.id == data.id)"><i class="material-icons pt-1">bookmark</i></span>
+							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-if="following.some(market => market.symbol == data.market_symbol) || setToFollow.some(market => market.symbol == data.market_symbol)"><i class="material-icons pt-1">bookmark</i></span>
 							<span class="d-sm-none d-md-none d-lg-none d-xl-none" v-else><i class="material-icons pt-1">bookmark_border</i></span>
-							<p class="mb-2 detailed-market-name d-sm-none d-md-none d-lg-none d-xl-none">Last price: ${{data.price}}</p>
-							{{data.description}}
+							<p class="mb-2 detailed-market-name d-sm-none d-md-none d-lg-none d-xl-none">Last price: ${{data.close}}</p>
+							{{data.market_name}}
 						</div>
 						<div class="w-100 d-flex justify-content-center my-5">
-							<apexchart class="chart" :id="'chart' + data.id" width=500 height="350" data-parent="#marketValue" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
+							<apexchart class="chart" :id="'chart' + data.market_symbol" width=500 height="350" data-parent="#marketValue" type="candlestick" v-if="loaded" :series="series" :options="chartOptions"/>
 						</div>
 						<div>
-							<button class="bookmark-button" v-if="following.some(market => market.id == data.id) || 
-								setToFollow.some(market => market.id == data.id)" v-on:click="removeFromBookMarks(data.id)">Remove from Bookmark</button>
-							<button class="bookmark-button" v-else v-on:click="addToBookmarks({id: data.id, name: data.name, symbol: data.symbol})">Add to Bookmark</button>
+							<button class="bookmark-button" v-if="following.some(market => market.symbol == data.market_symbol) || 
+								setToFollow.some(market => market.symbol == data.market_symbol)" v-on:click="removeFromBookMarks(data.market_symbol)">Remove from Bookmark</button>
+							<button class="bookmark-button" v-else v-on:click="addToBookmarks({name: data.market_name, symbol: data.market_symbol})">Add to Bookmark</button>
 						</div>
 					</div>
 				</div>
@@ -111,7 +111,7 @@ export default {
 	},
 	methods:{
 			getAllData(){
-				axios.get(process.env.APIURL + 'marketDetails')
+				axios.get(process.env.APIURL + 'markets')
 				.then(all => {
 					this.allData = all.data;
 				})
@@ -126,16 +126,16 @@ export default {
 				EventBus.$emit('addBookmark', element);
 			},
 			removeFromBookMarks: function(element){
-				if(this.following.some(market => market.id == element)){
+				if(this.following.some(market => market.symbol == element)){
 					// const index = this.following.indexOf(element);
 					// this.following.splice(index, 1);
-					var removeIndex = this.following.map(item => item.id).indexOf(element);
+					var removeIndex = this.following.map(item => item.market_symbol).indexOf(element);
 					this.following.splice(removeIndex, 1);
 				}
-				if(this.setToFollow.some(market => market.id == element)){
+				if(this.setToFollow.some(market => market.symbol == element)){
 					// const index = this.setToFollow.indexOf(element);
 					// this.setToFollow.splice(index, 1);
-					var removeIndex = this.setToFollow.map(item => item.id).indexOf(element);
+					var removeIndex = this.setToFollow.map(item => item.market_symbol).indexOf(element);
 					this.setToFollow.splice(removeIndex, 1);
 				}
 				const follow = [...this.setToFollow, ...this.following]
@@ -146,7 +146,7 @@ export default {
 			plotChart: function(element){
 				this.loaded = false
 				try {
-					axios.get(process.env.APIURL +`history?symbol=`+element.element)
+					axios.get(process.env.FAKEAPIURL +`history?symbol=`+element.element)
 					.then(coinList =>{
 						if (coinList.data.length>0){
 							for(var i=0; i<coinList.data.length; i++ ){
