@@ -162,7 +162,7 @@ export default {
 							obj['y']= [0,0,0,0];
 							this.series[0].data.push(obj);
 						}
-						console.log(this.series[0])
+						//console.log(this.series[0])
 						this.loaded = true;
 					}
 				)
