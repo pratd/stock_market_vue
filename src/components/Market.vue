@@ -151,6 +151,7 @@ export default {
 				this.loaded = false
 				try {
 					axios.get(process.env.FAKEAPIURL +`history?symbol=`+element.element)
+					console.log(element.element);
 					.then(coinList =>{
 						if (coinList.data.length>0){
 							for(var i=0; i<coinList.data.length; i++ ){
